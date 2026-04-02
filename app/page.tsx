@@ -1,7 +1,10 @@
+import './page.css';
+import { Header } from '../components/header/Header';
+
 export default function Home() {
-  return (
-    <main>
-      <div>Hello world!</div>
-    </main>
-  );
+	return (
+		<main className="w-full">
+			<Header />
+		</main>
+	);
 }

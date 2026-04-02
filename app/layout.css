@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+    /* Cores principais da marca Dri Tec */
+    --brand-primary: #0d47a1;
+    --brand-primary-hover: #1565c0;
+    --brand-dark: #0a1628;
+
+    /* Cores de destaque */
+    --highlight-light-blue: #93c5fd;
+    --highlight-pale-blue: #dbeafe;
+
+    /* WhatsApp */
+    --whatsapp-color: #22c55e;
+    --whatsapp-hover: #16a34a;
+
+    /* Fundos */
+    --background-white: #ffffff;
+    --background-light-gray: #f9fafb;
+    --background-blue-subtle: #eff6ff;
+
+    /* Textos */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --text-light: #9ca3af;
+    --text-on-blue: #ffffff;
+
+    /* Bordas */
+    --border-blue-light: #dbeafe;
+    --border-blue-medium: #bfdbfe;
+    --border-gray-light: #f3f4f6;
+
+    /* Cards e containers */
+    --card-background: #ffffff;
+    --card-blue-tint: #eff6ff;
+
+    /* Gradientes */
+    --gradient-hero: linear-gradient(180deg, #0a1628 0%, #0d47a1 100%);
+    --gradient-contact: linear-gradient(180deg, #0a1628 0%, #0d47a1 100%);
+
+    /* Estados de interação */
+    --hover-blue: #1565c0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Ícones */
+    --icon-blue: #0d47a1;
+    --icon-white: #ffffff;
+    --icon-success: #22c55e;
+}
+
+@theme {
+    --color-brand-primary: var(--brand-primary);
+    --color-brand-primary-hover: var(--brand-primary-hover);
+    --color-brand-dark: var(--brand-dark);
+    --color-highlight-light-blue: var(--highlight-light-blue);
+    --color-highlight-pale-blue: var(--highlight-pale-blue);
+    --color-whatsapp: var(--whatsapp-color);
+    --color-whatsapp-hover: var(--whatsapp-hover);
+    --color-background-white: var(--background-white);
+    --color-background-light-gray: var(--background-light-gray);
+    --color-background-blue-subtle: var(--background-blue-subtle);
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-text-light: var(--text-light);
+    --color-text-on-blue: var(--text-on-blue);
+    --color-border-blue-light: var(--border-blue-light);
+    --color-border-blue-medium: var(--border-blue-medium);
+    --color-border-gray-light: var(--border-gray-light);
+    --color-card-background: var(--card-background);
+    --color-card-blue-tint: var(--card-blue-tint);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+* {
+    box-sizing: border-box;
+}
