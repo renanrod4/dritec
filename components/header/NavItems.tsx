@@ -11,7 +11,7 @@ export function NavItems() {
 	return (
 		<>
 			{menuItems.map((item) => (
-				<li key={item.label} className='flex items-center'>
+				<li key={item.label} className='flex items-center text-text-on-blue	'>
 					<Link href={item.href}>{item.label}</Link>
 				</li>
 			))}
