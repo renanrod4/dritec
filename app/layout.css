@@ -29,7 +29,7 @@
     /* Bordas */
     --border-blue-light: #dbeafe;
     --border-blue-medium: #bfdbfe;
-    --border-gray-light: #f3f4f6;
+    --border-gray-light: rgb(243, 244, 246);
 
     /* Cards e containers */
     --card-background: #ffffff;

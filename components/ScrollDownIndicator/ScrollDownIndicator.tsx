@@ -5,11 +5,11 @@ import scrollDownAnimation from "@/public/animations/scrolldown.json";
 
 interface ScrollDownIndicatorProps {
   size?: number;
-  classname?: string;
+  className?: string;
 }
 
-export default function ScrollDownIndicator({size = 40, classname = ""}:ScrollDownIndicatorProps) {
-  return <div className={`${classname}`} style={{width: size*2, height: size*2}}>
+export default function ScrollDownIndicator({size = 40, className = ""}:ScrollDownIndicatorProps) {
+  return <div className={`${className}`} style={{width: size*2, height: size*2}}>
     <Lottie animationData={scrollDownAnimation} loop />
   </div>;
 }
