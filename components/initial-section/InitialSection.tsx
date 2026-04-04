@@ -7,7 +7,10 @@ import { AnimatedBubbleParticles } from '@/components/lightswind/animated-bubble
 
 export function InitialSection() {
 	return (
-		<section className="relative z-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-brand-dark to-brand-primary text-white overflow-visible">
+		<section
+			id="initial-section"
+			className="relative z-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-brand-dark to-brand-primary text-white overflow-visible"
+		>
 			{/* Partículas animadas de bolhas */}
 			<AnimatedBubbleParticles
 				backgroundColor="transparent"
@@ -28,7 +31,7 @@ export function InitialSection() {
 				<InitialSectionDescription />
 				<InitialSectionActions />
 			</div>
-			<ScrollDownIndicator className="opacity-40 fixed bottom-2 z-10" />
+			<ScrollDownIndicator visibleWhileSelector="#initial-section" className="fixed bottom-2 z-10" />
 		</section>
 	);
 }
