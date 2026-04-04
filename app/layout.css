@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../lightswind.css";
 
 :root {
     /* Cores principais da marca Dri Tec */

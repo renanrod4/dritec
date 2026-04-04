@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "google-fonts": "^1.0.0",
+    "lightswind": "^3.1.21",
     "lottie-react": "^2.4.1",
     "next": "^16.2.2",
     "react": "19.2.3",
