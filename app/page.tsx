@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function Home() {
 	return (
-		<main className="relative isolate w-full">
+		<main className="relative isolate w-full overflow-x-clip">
 			<Header />
 			<InitialSection />
 			<SectionDivider />
@@ -18,7 +18,7 @@ export default function Home() {
 
 function SectionDivider() {
 	return (
-		<div className="relative -z-10 w-full -translate-y-[40%] pointer-events-none min-w-175 overflow-hidden">
+		<div className="relative -z-10 w-full -translate-y-[40%] min-w-175 pointer-events-none overflow-hidden">
 			<Image src="/images/sectionDivider.png" width={1920} height={30} alt="divider" className="w-full h-auto" />
 		</div>
 	);
