@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars, FaXmark } from 'react-icons/fa6';
 import { Logo } from './Logo';
 import { NavItems } from './NavItems';
@@ -8,20 +8,46 @@ import { WhatsappBtn } from '../WhatsappBtn';
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isOnInitialSection, setIsOnInitialSection] = useState(true);
 
 	const closeMenu = () => setIsMenuOpen(false);
 	const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
+	useEffect(() => {
+		const updateHeaderTextColor = () => {
+			const referenceElement = document.getElementById('section-divider');
+
+			if (!referenceElement) {
+				setIsOnInitialSection(false);
+				return;
+			}
+			const rect = referenceElement.getBoundingClientRect();
+			console.log('Reference element bottom:', rect.bottom);
+			const triggerOffset = 190;
+			setIsOnInitialSection(rect.bottom > triggerOffset);
+		};
+
+		updateHeaderTextColor();
+		window.addEventListener('scroll', updateHeaderTextColor, { passive: true });
+		window.addEventListener('resize', updateHeaderTextColor);
+
+		return () => {
+			window.removeEventListener('scroll', updateHeaderTextColor);
+			window.removeEventListener('resize', updateHeaderTextColor);
+		};
+	}, []);
+
+	const desktopTextClass = isOnInitialSection ? 'text-text-on-blue' : 'text-brand-primary';
+	const desktopHoverClass = isOnInitialSection ? 'hover:text-highlight-light-blue' : 'hover:text-brand-primary-hover';
+	const mobileToggleTextClass = isOnInitialSection ? 'text-white' : 'text-brand-primary';
+
 	return (
 		<header className="fixed top-0 inset-x-0 z-20 mt-4 mx-2 md:mx-[2%] bg-white/2 backdrop-blur-xs rounded-xl shadow-lg">
 			<ul className="flex h-16 min-w-0 items-center gap-4 px-2 md:gap-8">
-				<Logo />
+				<Logo textClassName={desktopTextClass} />
 
 				<li className="hidden sm:flex items-center">
-					<NavItems
-						className="flex-row"
-						itemClassName="text-text-on-blue hover:text-highlight-light-blue"
-					/>
+					<NavItems className="flex-row" itemClassName={`${desktopTextClass} ${desktopHoverClass}`} />
 				</li>
 
 				<li className="hidden sm:block shrink-0">
@@ -34,7 +60,7 @@ export function Header() {
 						onClick={toggleMenu}
 						aria-expanded={isMenuOpen}
 						aria-label="Abrir menu de navegação"
-						className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+						className={`flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm transition-colors hover:bg-white/20 ${mobileToggleTextClass}`}
 					>
 						{isMenuOpen ? <FaXmark size={18} /> : <FaBars size={18} />}
 					</button>
@@ -43,7 +69,9 @@ export function Header() {
 
 			<div
 				className={`sm:hidden transition-all duration-200 ${
-					isMenuOpen ? 'pointer-events-auto opacity-100 translate-y-0' : 'pointer-events-none opacity-0 -translate-y-1'
+					isMenuOpen
+						? 'pointer-events-auto opacity-100 translate-y-0'
+						: 'pointer-events-none opacity-0 -translate-y-1'
 				}`}
 			>
 				<div className="mt-2 fixed right-0 w-[60%] rounded-xl border border-border-gray-light bg-background-white p-4 shadow-xl">

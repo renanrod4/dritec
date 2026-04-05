@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function SectionDivider() {
 	return (
-		<div className="relative -z-10 w-full -mt-[8%] md:-mt-[8%] pointer-events-none overflow-hidden">
+		<div id="section-divider" className="relative -z-10 w-full -mt-[8%] md:-mt-[8%] pointer-events-none overflow-hidden">
 			<Image
 				src="/images/sectionDivider.png"
 				width={1920}

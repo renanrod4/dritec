@@ -1,5 +1,3 @@
-import './page.css';
-
 import { Header } from '../components/header/Header';
 import { InitialSection } from '../components/initial-section/InitialSection';
 import HighlightsSection from '@/components/highlights-section/HighlightSection';

@@ -8,7 +8,6 @@ import { AnimatedBubbleParticles } from '@/components/lightswind/animated-bubble
 export function InitialSection() {
 	return (
 		<section
-			id="initial-section"
 			className="relative z-0 h-screen flex flex-col items-center justify-center bg-linear-to-b from-brand-dark to-brand-primary text-white overflow-visible"
 		>
 			{/* Partículas animadas de bolhas */}
