@@ -13,8 +13,8 @@ export function Header() {
 	const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
 	return (
-		<header className="fixed top-0 inset-x-0 z-20 mt-4 px-2 md:px-[2%]">
-			<ul className="flex h-16 w-full max-w-full min-w-0 items-center gap-4 px-2 md:gap-8">
+		<header className="fixed top-0 inset-x-0 z-20 mt-4 mx-2 md:mx-[2%] bg-white/2 backdrop-blur-xs rounded-xl shadow-lg">
+			<ul className="flex h-16 min-w-0 items-center gap-4 px-2 md:gap-8">
 				<Logo />
 
 				<li className="hidden sm:flex items-center">
