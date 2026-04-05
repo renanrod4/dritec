@@ -4,7 +4,7 @@ import { Card } from './Card';
 
 export function Cards() {
 	return (
-		<div className="flex flex-wrap gap-6 justify-center items-center h-[50dvh]">
+		<div className="flex flex-wrap gap-6 justify-center items-center min-h-[50dvh]">
 			<Card
 				icon={FaLocationDot}
 				title="São Paulo e Região"

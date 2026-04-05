@@ -23,7 +23,7 @@ export function InitialSection() {
 				height="calc(100% + 6rem)"
 				blurStrength={5}
 				zIndex={0}
-				className="absolute inset-x-0 top-0 w-full z-0 opacity-20 pointer-events-none mask-[linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
+				className="absolute inset-x-0 top-0 w-full z-0 opacity-10 pointer-events-none mask-[linear-gradient(to_bottom,black_0%,black_78%,transparent_100%)]"
 			/>
 			<div className="w-full flex flex-col items-center justify-center text-center px-4 z-10">
 				<Image src="/images/logo.png" width={200} height={200} alt="logo" />
