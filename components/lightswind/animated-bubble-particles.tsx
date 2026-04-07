@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { cn } from '../../lib/utils'; // Assuming this is a utility like clsx or classnames
 
 export interface ParticleConfig {
@@ -71,8 +71,8 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	const particlesArrayRef = useRef<ParticleConfig[]>([]);
 	const isPausedRef = useRef(false);
 	const gooIdRef = useRef<string>('goo-filter');
-
-	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+	const dimensionsRef = useRef({ width: 0, height: 0 });
+	const resizeRafRef = useRef<number | null>(null);
 
 	const createParticleElement = useCallback(() => {
 		const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -99,6 +99,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	}, [particleSize, particleColor]);
 
 	const createParticle = useCallback((): ParticleConfig => {
+		const dimensions = dimensionsRef.current;
 		const element = createParticleElement();
 		if (particlesRef.current) {
 			particlesRef.current.appendChild(element);
@@ -127,7 +128,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 			friction: frictionValue,
 			element,
 		};
-	}, [createParticleElement, dimensions, friction, scaleRange]);
+	}, [createParticleElement, friction, scaleRange]);
 
 	const updateParticle = useCallback(
 		(particle: ParticleConfig): boolean => {
@@ -178,23 +179,38 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	);
 
 	const spawnParticle = useCallback(() => {
+		const dimensions = dimensionsRef.current;
 		if (!isPausedRef.current && dimensions.width > 0 && dimensions.height > 0) {
 			const particle = createParticle();
 			particlesArrayRef.current.push(particle);
 		}
-	}, [dimensions, createParticle]);
+	}, [createParticle]);
 
 	useEffect(() => {
 		const updateDimensions = () => {
 			if (containerRef.current) {
 				const rect = containerRef.current.getBoundingClientRect();
-				setDimensions({ width: rect.width, height: rect.height });
+				dimensionsRef.current = { width: rect.width, height: rect.height };
 			}
 		};
 
+		const scheduleDimensionUpdate = () => {
+			if (resizeRafRef.current) return;
+			resizeRafRef.current = requestAnimationFrame(() => {
+				resizeRafRef.current = null;
+				updateDimensions();
+			});
+		};
+
 		updateDimensions();
-		window.addEventListener('resize', updateDimensions);
-		return () => window.removeEventListener('resize', updateDimensions);
+		window.addEventListener('resize', scheduleDimensionUpdate, { passive: true });
+		return () => {
+			window.removeEventListener('resize', scheduleDimensionUpdate);
+			if (resizeRafRef.current) {
+				cancelAnimationFrame(resizeRafRef.current);
+				resizeRafRef.current = null;
+			}
+		};
 	}, []);
 
 	useEffect(() => {
@@ -217,17 +233,15 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	}, [pauseOnBlur]);
 
 	useEffect(() => {
-		if (dimensions.width > 0 && dimensions.height > 0) {
-			if (animationRef.current) {
-				cancelAnimationFrame(animationRef.current);
-			}
-			if (intervalRef.current) {
-				clearInterval(intervalRef.current);
-			}
-
-			animationRef.current = requestAnimationFrame(animate);
-			intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
+		if (animationRef.current) {
+			cancelAnimationFrame(animationRef.current);
 		}
+		if (intervalRef.current) {
+			clearInterval(intervalRef.current);
+		}
+
+		animationRef.current = requestAnimationFrame(animate);
+		intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
 
 		return () => {
 			if (animationRef.current) {
@@ -243,9 +257,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 			});
 			particlesArrayRef.current = [];
 		};
-	}, [dimensions, spawnInterval, animate, spawnParticle]);
-
-	// Determine the background class to apply
+	}, [spawnInterval, animate, spawnParticle]);
 	const backgroundClass = (() => {
 		// Check if a 'bg-' class is already present in the user-provided className
 		if (className && className.split(' ').some(cls => cls.startsWith('bg-'))) {
