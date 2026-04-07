@@ -12,6 +12,7 @@ export function WhatsappBtn({ text = 'Orçamento', className = '', iconSize = 20
 		<button
 			type="button"
 			aria-label="Solicitar orçamento no WhatsApp"
+			suppressHydrationWarning
 			className={cn(
 				'w-full sm:w-auto whitespace-nowrap cursor-pointer rounded-full bg-whatsapp px-5 py-3 text-white',
 				'flex items-center justify-center gap-2 transition-all duration-200 shadow-sm',
