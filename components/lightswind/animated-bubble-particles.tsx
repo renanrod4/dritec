@@ -72,7 +72,6 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	const isPausedRef = useRef(false);
 	const gooIdRef = useRef<string>('goo-filter');
 	const dimensionsRef = useRef({ width: 0, height: 0 });
-	const resizeRafRef = useRef<number | null>(null);
 
 	const createParticleElement = useCallback(() => {
 		const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -99,18 +98,18 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	}, [particleSize, particleColor]);
 
 	const createParticle = useCallback((): ParticleConfig => {
-		const dimensions = dimensionsRef.current;
+		const { width: containerWidth, height: containerHeight } = dimensionsRef.current;
 		const element = createParticleElement();
 		if (particlesRef.current) {
 			particlesRef.current.appendChild(element);
 		}
 
-		const x = Math.random() * dimensions.width;
-		const y = dimensions.height + 100;
-		const steps = dimensions.height / 2;
+		const x = Math.random() * containerWidth;
+		const y = containerHeight + 100;
+		const steps = containerHeight / 2;
 		const frictionValue = friction.min + Math.random() * (friction.max - friction.min);
 		const scale = scaleRange.min + Math.random() * (scaleRange.max - scaleRange.min);
-		const siner = (dimensions.width / 2.5) * Math.random();
+		const siner = (containerWidth / 2.5) * Math.random();
 		const rotationDirection = Math.random() > 0.5 ? '+' : '-';
 
 		element.style.transform = 'translateX(' + x + 'px) translateY(' + y + 'px)';
@@ -179,39 +178,50 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	);
 
 	const spawnParticle = useCallback(() => {
-		const dimensions = dimensionsRef.current;
-		if (!isPausedRef.current && dimensions.width > 0 && dimensions.height > 0) {
+		const { width: containerWidth, height: containerHeight } = dimensionsRef.current;
+		if (!isPausedRef.current && containerWidth > 0 && containerHeight > 0) {
 			const particle = createParticle();
 			particlesArrayRef.current.push(particle);
 		}
 	}, [createParticle]);
+
+	const stopAnimation = useCallback(() => {
+		if (animationRef.current) {
+			cancelAnimationFrame(animationRef.current);
+			animationRef.current = null;
+		}
+		if (intervalRef.current) {
+			clearInterval(intervalRef.current);
+			intervalRef.current = null;
+		}
+	}, []);
+
+	const startAnimation = useCallback(() => {
+		stopAnimation();
+		animationRef.current = requestAnimationFrame(animate);
+		intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
+	}, [animate, spawnInterval, spawnParticle, stopAnimation]);
 
 	useEffect(() => {
 		const updateDimensions = () => {
 			if (containerRef.current) {
 				const rect = containerRef.current.getBoundingClientRect();
 				dimensionsRef.current = { width: rect.width, height: rect.height };
-			}
-		};
 
-		const scheduleDimensionUpdate = () => {
-			if (resizeRafRef.current) return;
-			resizeRafRef.current = requestAnimationFrame(() => {
-				resizeRafRef.current = null;
-				updateDimensions();
-			});
+				if (rect.width > 0 && rect.height > 0 && animationRef.current === null && intervalRef.current === null) {
+					startAnimation();
+				}
+			}
 		};
 
 		updateDimensions();
-		window.addEventListener('resize', scheduleDimensionUpdate, { passive: true });
+		window.addEventListener('resize', updateDimensions);
+
 		return () => {
-			window.removeEventListener('resize', scheduleDimensionUpdate);
-			if (resizeRafRef.current) {
-				cancelAnimationFrame(resizeRafRef.current);
-				resizeRafRef.current = null;
-			}
+			window.removeEventListener('resize', updateDimensions);
+			stopAnimation();
 		};
-	}, []);
+	}, [startAnimation, stopAnimation]);
 
 	useEffect(() => {
 		if (!pauseOnBlur) return;
@@ -233,23 +243,15 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 	}, [pauseOnBlur]);
 
 	useEffect(() => {
-		if (animationRef.current) {
-			cancelAnimationFrame(animationRef.current);
-		}
 		if (intervalRef.current) {
 			clearInterval(intervalRef.current);
+			intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
 		}
+	}, [spawnInterval, spawnParticle]);
 
-		animationRef.current = requestAnimationFrame(animate);
-		intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
-
+	useEffect(() => {
 		return () => {
-			if (animationRef.current) {
-				cancelAnimationFrame(animationRef.current);
-			}
-			if (intervalRef.current) {
-				clearInterval(intervalRef.current);
-			}
+			stopAnimation();
 			particlesArrayRef.current.forEach(particle => {
 				if (particle.element && particle.element.parentNode) {
 					particle.element.parentNode.removeChild(particle.element);
@@ -257,7 +259,9 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 			});
 			particlesArrayRef.current = [];
 		};
-	}, [spawnInterval, animate, spawnParticle]);
+	}, [stopAnimation]);
+
+	// Determine the background class to apply
 	const backgroundClass = (() => {
 		// Check if a 'bg-' class is already present in the user-provided className
 		if (className && className.split(' ').some(cls => cls.startsWith('bg-'))) {

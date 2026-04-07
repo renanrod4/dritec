@@ -1,3 +1,4 @@
+import AboutUsSection from '@/components/about-section/AboutUsSection';
 import { Header } from '../components/header/Header';
 import { InitialSection } from '../components/initial-section/InitialSection';
 import HighlightsSection from '@/components/highlights-section/HighlightSection';
@@ -12,6 +13,7 @@ export default function Home() {
 			<SectionDivider />
 			<HighlightsSection />
 			<ServicesSection />
+			<AboutUsSection />
 		</main>
 	);
 }

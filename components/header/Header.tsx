@@ -51,7 +51,7 @@ export function Header() {
 				</li>
 
 				<li className="hidden sm:block shrink-0">
-					<WhatsappBtn />
+					<WhatsappBtn className='rounded-xl'/>
 				</li>
 
 				<li className="sm:hidden ml-auto">
@@ -81,7 +81,7 @@ export function Header() {
 						itemClassName="text-text-primary text-xl hover:text-brand-primary"
 					/>
 					<div className="mt-3">
-						<WhatsappBtn className="w-full justify-center my-0" />
+						<WhatsappBtn className="w-full justify-center my-0 rounded-lg" />
 					</div>
 				</div>
 			</div>
