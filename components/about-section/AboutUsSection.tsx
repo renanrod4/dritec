@@ -13,7 +13,7 @@ const listItems = [
 
 export default function AboutUsSection() {
 	return (
-		<section className="bg-background-white flex flex-row items-center justify-center px-4 py-16 gap-12">
+		<section className="bg-background-white flex flex-col md:flex-row items-center justify-center px-4 py-16 gap-12">
 			<div className="max-w-xl">
 				<h2 className="uppercase font-semibold text-sm text-brand-primary mb-4">Sobre Nós</h2>
 				<h1 className="text-3xl font-bold mb-6">Por que escolher a DRI TEC</h1>
@@ -22,7 +22,7 @@ export default function AboutUsSection() {
 					e região metropolitana. Nosso compromisso é oferecer um serviço rápido, preciso e com o menor
 					impacto possível ao seu imóvel.
 				</p>
-				<ul className="flex flex-col flex-wrap max-h-38 mt-6 mr-3 gap-x-8">
+				<ul className="flex flex-col lg:flex-wrap lg:max-h-38 mt-6 mr-3 gap-x-8">
                     {listItems.map((item, index) => (
                         <li key={index} className="flex items-start mt-4 text-wrap max-w-[30ch]">
                             {/* green check logo */}
