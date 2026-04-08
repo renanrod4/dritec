@@ -38,11 +38,12 @@ export function Header() {
 	}, []);
 
 	const desktopTextClass = isOnInitialSection ? 'text-text-on-blue' : 'text-brand-primary';
+	const desktopBgClass = isOnInitialSection ? 'bg-white/2' : 'bg-brand-primary/10 ';
 	const desktopHoverClass = isOnInitialSection ? 'hover:text-highlight-light-blue' : 'hover:text-brand-primary-hover';
 	const mobileToggleTextClass = isOnInitialSection ? 'text-white' : 'text-brand-primary';
 
 	return (
-		<header className="fixed top-0 inset-x-0 z-20 mt-4 mx-2 md:mx-[2%] bg-white/2 backdrop-blur-xs rounded-xl shadow-lg">
+		<header className={`fixed top-0 inset-x-0 z-20 mt-4 mx-2 md:mx-[2%] backdrop-blur-xs rounded-xl shadow-lg ${desktopBgClass} transition-colors duration-300`}>
 			<ul className="flex h-16 min-w-0 items-center gap-4 px-2 md:gap-8">
 				<Logo textClassName={desktopTextClass} />
 
