@@ -5,6 +5,7 @@ import HighlightsSection from '@/components/highlights-section/HighlightSection'
 import SectionDivider from '@/components/section-divider/SectionDivider';
 import ServicesSection from '@/components/services-section/ServicesSection';
 import ContactSection from '@/components/contact-section/ContactSection';
+import AboutContactWaveDivider from '@/components/section-divider/AboutContactWaveDivider';
 
 export default function Home() {
 	return (
@@ -15,6 +16,7 @@ export default function Home() {
 			<HighlightsSection />
 			<ServicesSection />
 			<AboutUsSection />
+			<AboutContactWaveDivider />
 			<ContactSection />
 		</main>
 	);
