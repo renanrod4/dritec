@@ -6,6 +6,7 @@ import SectionDivider from '@/components/section-divider/SectionDivider';
 import ServicesSection from '@/components/services-section/ServicesSection';
 import ContactSection from '@/components/contact-section/ContactSection';
 import AboutContactWaveDivider from '@/components/section-divider/AboutContactWaveDivider';
+import Footer from '@/components/footer/Footer';
 
 export default function Home() {
 	return (
@@ -18,6 +19,7 @@ export default function Home() {
 			<AboutUsSection />
 			<AboutContactWaveDivider />
 			<ContactSection />
+			<Footer/>
 		</main>
 	);
 }
