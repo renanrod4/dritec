@@ -45,7 +45,7 @@ export default function AboutUsSection() {
 					alt="Sobre nós"
 					width={600}
 					height={400}
-					className="rounded-4xl mt-8 h-85 object-cover"
+					className="rounded-4xl mt-8 h-85 w-auto object-cover"
 				/>
 			</div>
 		</section>
