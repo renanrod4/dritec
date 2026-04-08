@@ -4,7 +4,7 @@ import { FaClock, FaPhoneAlt } from 'react-icons/fa';
 
 export default function ContactSection() {
 	return (
-		<section className="bg-linear-to-b from-brand-dark to-brand-primary text-text-on-blue flex flex-col items-center justify-center py-10 sm:py-20">
+		<section id='contact-section' className="bg-linear-to-b from-brand-dark to-brand-primary text-text-on-blue flex flex-col items-center justify-center py-10 sm:py-20">
 			<ContactHeader />
 			<ContactCards />
 			<WhatsappBtn text="Chamar no WhatsApp" className=" text-base sm:text-xl gap-3 md:px-10 w-[90%]" iconSize={30} />

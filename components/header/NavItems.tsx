@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 const menuItems = [
-	{ label: 'Início', href: '/' },
-	{ label: 'Serviços', href: '/' },
-	{ label: 'Sobre', href: '/' },
-	{ label: 'Contato', href: '/' },
+	{ label: 'Início', href: '/#highlights-section' },
+	{ label: 'Serviços', href: '/#services-section' },
+	{ label: 'Sobre', href: '/#about-section' },
+	{ label: 'Contato', href: '/#contact-section' },
 ];
 
 interface NavItemsProps {

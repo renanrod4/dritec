@@ -4,7 +4,7 @@ import { MdPlumbing, MdSensors } from "react-icons/md";
 
 export default function ServicesSection() {
 	return (
-		<section className="px-4 md:px-16 py-16 bg-background-light-gray flex flex-col items-center gap-8">
+		<section id="services-section" className="px-4 md:px-16 py-16 bg-background-light-gray flex flex-col items-center gap-8">
             <ServicesHeader />
             <ServicesCards />
         </section>

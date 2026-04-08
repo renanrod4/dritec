@@ -13,7 +13,7 @@ const listItems = [
 
 export default function AboutUsSection() {
 	return (
-		<section className="bg-background-white flex flex-col md:flex-row items-center justify-center px-4 py-16 gap-12">
+		<section id='about-section' className="bg-background-white flex flex-col md:flex-row items-center justify-center px-4 py-16 gap-12">
 			<div className="max-w-xl">
 				<h2 className="uppercase font-semibold text-sm text-brand-primary mb-4">Sobre Nós</h2>
 				<h1 className="text-3xl font-bold mb-6">Por que escolher a DRI TEC</h1>
@@ -41,11 +41,11 @@ export default function AboutUsSection() {
                     Tempo de chegada</span>
                 </div>
 				<Image
-					src="/images/mockImage.png"
+					src="/images/image.png"
 					alt="Sobre nós"
 					width={600}
 					height={400}
-					className="rounded-4xl mt-8 h-85 w-auto object-cover"
+					className="rounded-4xl mt-8 h-85 object-cover object-[center_24%]"
 				/>
 			</div>
 		</section>
