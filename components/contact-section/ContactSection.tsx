@@ -7,7 +7,7 @@ export default function ContactSection() {
 		<section id='contact-section' className="bg-linear-to-b from-brand-dark to-brand-primary text-text-on-blue flex flex-col items-center justify-center py-10 sm:py-20">
 			<ContactHeader />
 			<ContactCards />
-			<WhatsappBtn text="Chamar no WhatsApp" className=" text-base sm:text-xl gap-3 md:px-10 w-[90%]" iconSize={30} />
+			<WhatsappBtn text="Quero Atendimento Imediato" className=" text-base sm:text-xl gap-3 md:px-10 w-[90%]" iconSize={30} />
 		</section>
 	);
 }
@@ -17,9 +17,12 @@ function ContactHeader() {
 		<div className="text-center py-12 flex flex-col items-center">
 			<h2 className="uppercase font-semibold text-sm text-highlight-light-blue mb-2">Contato</h2>
 			<h1 className="text-3xl font-bold mb-4">Precisa de ajuda com vazamentos?</h1>
-			<p className="text-highlight-pale-blue max-w-[60ch]">
-				Entre em contato agora mesmo pelo WhatsApp. Atendemos São Paulo e região com agilidade e
-				profissionalismo.
+			<p className="text-highlight-pale-blue max-w-[70ch]">
+				Entre em contato agora mesmo pelo WhatsApp. <span className='font-bold'>Resolver cedo evita aumento do vazamento e reduz
+				o custo do reparo</span>. Atendemos São Paulo e região com agilidade e profissionalismo.
+			</p>
+			<p className="mt-4 rounded-full border border-highlight-light-blue/20! bg-highlight-light-blue/10 px-4 py-2 text-sm text-highlight-pale-blue">
+				Chamados feitos agora entram em fila prioritária de atendimento.
 			</p>
 		</div>
 	);
