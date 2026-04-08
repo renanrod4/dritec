@@ -1,3 +1,5 @@
+'use client';
+
 import { FaWhatsapp } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +14,12 @@ export function WhatsappBtn({ text = 'Orçamento', className = '', iconSize = 20
 		<button
 			type="button"
 			aria-label="Solicitar orçamento no WhatsApp"
+			onClick={() => {
+				const phoneNumber = '5511973243498';
+				const message = encodeURIComponent('Olá, gostaria de solicitar um orçamento.');
+				const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+				window.open(whatsappUrl, '_blank');
+			}}
 			suppressHydrationWarning
 			className={cn(
 				'w-full sm:w-auto whitespace-nowrap cursor-pointer rounded-full bg-whatsapp px-5 py-3 text-white',
