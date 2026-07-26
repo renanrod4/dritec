@@ -4,8 +4,13 @@ import { InitialSectionActions } from './InitialSectionActions';
 import { InitialSectionDescription } from './InitialSectionDescription';
 import { InitialSectionTitle } from './InitialSectionTitle';
 import { AnimatedBubbleParticles } from '@/components/lightswind/animated-bubble-particles';
+import type { HomeCopyVariant } from '@/lib/seo';
 
-export function InitialSection() {
+interface InitialSectionProps {
+	copyVariant: HomeCopyVariant;
+}
+
+export function InitialSection({ copyVariant }: InitialSectionProps) {
 	return (
 		<section
 			id="initial-section"
@@ -27,9 +32,9 @@ export function InitialSection() {
 			/>
 			<div className="w-full flex flex-col items-center justify-center text-center px-4 z-10">
 				<Image src="/images/logo.png" width={200} height={200} alt="logo" />
-				<InitialSectionTitle />
-				<InitialSectionDescription />
-				<InitialSectionActions />
+				<InitialSectionTitle mainText={copyVariant.heroTitle} highlightText={copyVariant.heroTitleHighlight} />
+				<InitialSectionDescription text={copyVariant.heroDescription} />
+				<InitialSectionActions priorityMessage={copyVariant.priorityMessage} />
 			</div>
 			<ScrollDownIndicator visibleWhileSelector="#initial-section" className="fixed bottom-2 z-10" />
 		</section>
