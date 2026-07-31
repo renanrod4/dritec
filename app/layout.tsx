@@ -6,7 +6,7 @@ import { localBusinessJsonLd } from '@/lib/seo';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://dritec.vercel.app/'),
+	metadataBase: new URL('https://dri.tec.br/'),
 	title: {
 		default: 'DRI TEC | Caça Vazamentos em São Paulo',
 		template: '%s | DRI TEC',
@@ -14,6 +14,10 @@ export const metadata: Metadata = {
 	description:
 		'DRI TEC é uma empresa especialista em caça vazamentos em São Paulo, com atendimento técnico, preciso e rápido para residências, condomínios e empresas.',
 	keywords: [
+		'dritec',
+		'dri.tec.br',
+		'dri.tec',
+		'dri tec',
 		'caça vazamentos',
 		'caça vazamentos são paulo',
 		'detecção de vazamentos',
