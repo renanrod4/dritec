@@ -16,93 +16,110 @@ export default function OpenGraphImage() {
 				height: '100%',
 				width: '100%',
 				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
 				position: 'relative',
-				background: 'linear-gradient(135deg, #0f172a 0%, #0a2745 45%, #0e7490 100%)',
+				backgroundImage: 'linear-gradient(180deg, #0a1628 0%, #0d47a1 100%)',
 				color: '#ffffff',
 				fontFamily: 'Segoe UI, Arial, sans-serif',
 				overflow: 'hidden',
+				boxSizing: 'border-box',
+				padding: '50px',
+				paddingBottom: '20px',
 			}}
 		>
 			<div
 				style={{
 					position: 'absolute',
-					right: -140,
-					top: -140,
-					width: 420,
-					height: 420,
-					borderRadius: 9999,
-					background: 'rgba(147, 197, 253, 0.2)',
-				}}
-			/>
-			<div
-				style={{
-					position: 'absolute',
-					left: -90,
-					bottom: -140,
-					width: 360,
-					height: 360,
-					borderRadius: 9999,
-					background: 'rgba(56, 189, 248, 0.22)',
-				}}
-			/>
-
-			<div
-				style={{
 					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'space-between',
-					padding: '58px 72px',
 					width: '100%',
 					height: '100%',
-					zIndex: 1,
+					top: 0,
+					left: 0,
+					opacity: 0.1,
 				}}
 			>
-				<div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-					<div
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							width: 62,
-							height: 62,
-							borderRadius: 18,
-							background: 'rgba(255, 255, 255, 0.14)',
-							fontSize: 22,
-							fontWeight: 700,
-						}}
-					>
-						DT
-					</div>
-					<div style={{ display: 'flex', flexDirection: 'column' }}>
-						<span style={{ fontSize: 34, fontWeight: 800, letterSpacing: 0.5 }}>DRI TEC</span>
-						<span style={{ fontSize: 20, color: '#bfdbfe' }}>Caça vazamentos em São Paulo</span>
-					</div>
-				</div>
+				<img
+					src="https://dri.tec.br/images/opengraph-bg.png"
+					style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+				/>
+			</div>
 
-				<div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 900 }}>
-					<span style={{ fontSize: 64, fontWeight: 900, lineHeight: 1.06 }}>
-						Detecção não destrutiva de vazamentos
-					</span>
-					<span style={{ fontSize: 34, color: '#dbeafe', lineHeight: 1.28 }}>
-						Atendimento 24h para residências, condomínios e empresas.
-					</span>
-				</div>
-
+			<header style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
 				<div
 					style={{
+						padding: '5px',
 						display: 'flex',
 						alignItems: 'center',
-						justifyContent: 'space-between',
-						width: '100%',
-						fontSize: 26,
-						color: '#bae6fd',
+						justifyContent: 'center',
+						marginRight: '15px',
 					}}
 				>
-					<span>São Paulo e região metropolitana</span>
-					<span style={{ fontWeight: 700 }}>WhatsApp: (11) 97324-3498</span>
+					<img src="https://dri.tec.br/images/logo.png" style={{ width: '50px', height: '50px' }} />
 				</div>
-			</div>
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<h2 style={{ margin: '0', fontWeight: '500', fontSize: '24px' }}>DRI TEC</h2>
+					<p style={{ color: '#9ca3af', margin: '0', fontSize: '18px' }}>Caça vazamentos em São Paulo</p>
+				</div>
+			</header>
+			<main
+				style={{
+					display: 'flex',
+					width: '100%',
+					paddingRight: '50px',
+					paddingLeft: '50px',
+					flex: 1,
+				}}
+			>
+				<div
+					style={{
+						flex: '1',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'flex-start',
+					}}
+				>
+					<h1 style={{ fontSize: '40px', margin: '0', lineHeight: 1.2 }}>
+						Detecção não destrutiva de vazamentos
+					</h1>
+					<p style={{ fontSize: '24px', color: '#dbeafe', marginTop: '20px' }}>
+						Atendimento 24h para residências, condomínios e empresas.
+					</p>
+				</div>
+				<div
+					style={{
+						flex: '1',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<img
+						src="https://dri.tec.br/images/logo.png"
+						style={{ width: '350px', height: '350px', objectFit: 'contain' }}
+					/>
+				</div>
+			</main>
+
+			<footer
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					width: '100%',
+					color: '#dbeafe',
+					fontSize: '22px',
+					paddingTop: '20px',
+				}}
+			>
+				<p style={{ margin: 0 }}>São Paulo e região metropolitana</p>
+				<p style={{ margin: 0 }}>WhatsApp: (11) 97324-3498</p>
+			</footer>
 		</div>,
-		size,
+		{
+			width: 1200,
+			height: 630,
+		},
 	);
 }
